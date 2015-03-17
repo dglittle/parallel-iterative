@@ -138,6 +138,13 @@ function V(x, y) {
     }
 }
 
+function getStats(data) {
+    var o = {}
+    o.mean = _.sum(data) / data.length
+    o.variance = _.sum(_.map(data, function (e) { return Math.pow(o.mean - e, 2) })) / (data.length - 1)
+    return o
+}
+
 $(function () {
     console.log("blah!")
 
@@ -163,6 +170,7 @@ $(function () {
     data = _.sortBy(data, function (e) { return e })
 
     drawGraph(data, 'rgba(255, 0, 0, 0.3)')
+    console.log(getStats(data))
 
     ///
 
@@ -180,6 +188,7 @@ $(function () {
     data = _.sortBy(data, function (e) { return e })
 
     drawGraph(data, 'rgba(0, 0, 255, 0.3)')
+    console.log(getStats(data))
 
     ///
 
@@ -204,6 +213,7 @@ $(function () {
     data = _.sortBy(data, function (e) { return e })
 
     drawGraph(data, 'rgba(0, 255, 0, 0.3)')
+    console.log(getStats(data))
 })
 
 </script>
